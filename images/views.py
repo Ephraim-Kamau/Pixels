@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,HttpResponse,Http404
 import datetime as dt
 
 # Create your views here.
@@ -29,3 +29,23 @@ def convert_dates(dates):
     # Returning the actual day of the week
     day = days[day_number]
     return day    
+
+def past_days_images(request,past_date):
+
+    try:
+        # Converts data from the string Url
+        date = dt.datetime.strptime(past_date,'%Y-%m-%d').date()
+
+    except ValueError:
+        # Raise 404 error when ValueError is thrown
+        raise Http404()    
+
+    day = convert_dates(date)
+    html = f'''
+        <html>
+            <body>
+                <h1>Images for {day} {date.day}-{date.month}-{date.year}</h1>
+            </body>
+        </html>
+            '''
+    return HttpResponse(html)    
