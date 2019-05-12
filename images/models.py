@@ -17,13 +17,12 @@ class Image(models.Model):
     name = models.CharField(max_length=30)
     description = models.CharField(max_length=30)
     categories = models.ManyToManyField(categories)
-    location = models.ForeignKey(Location)
-
-    def __str__(self):
-        return self.name
-
-    def save_image(self):
-        self.save()    
+    location = models.ForeignKey(Location)  
 
     class Meta:
         ordering = ['name']
+
+    @classmethod
+    def search_by_category(cls,search_images):
+        images = Image.objects.filter(categories__name__icontains=search_images)
+        return images    
