@@ -1,0 +1,18 @@
+{%extends 'all-images/base.html'%}
+{% block content %}
+{{ block.super}}
+<br>
+<br>
+<div class="container">
+
+  <div class="card-columns">
+
+    <div class="card border-secondary">
+      <img class="card-img-top" class="img-responsive" src="{{image.gallery_image.url}}">
+    </div>
+   
+      {% endfor %}
+    </div>
+
+  </div>
+{% endblock %}

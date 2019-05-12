@@ -1,5 +1,7 @@
-from django.shortcuts import render,redirect,Http404
+from django.shortcuts import render,redirect
+from django.http  import HttpResponse,Http404
 import datetime as dt
+from .models import Image
 
 # Create your views here.
 def welcome(request):
@@ -7,8 +9,9 @@ def welcome(request):
 
 def images_of_day(request):
     date = dt.date.today()
+    images = Image.objects.all()
 
-    return render(request, 'all-images/today-images.html', {"date": date,})
+    return render(request, 'all-images/today-images.html', {"date": date, "images":images})
 
 def convert_dates(dates):
 
@@ -50,3 +53,10 @@ def search_results(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'all-images/search.html',{"message":message})    
+
+def get_image_by_id(request,image_id):
+    try:
+        image = Image.objects.get(id = image_id)
+    except DoesNotExist:
+        raise Http404()
+    return render(request,"image.html", {"image":image})        

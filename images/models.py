@@ -18,6 +18,7 @@ class Image(models.Model):
     description = models.CharField(max_length=30)
     categories = models.ManyToManyField(categories)
     location = models.ForeignKey(Location)  
+    gallery_image = models.ImageField(upload_to = 'pix/', blank=True)
 
     class Meta:
         ordering = ['name']
