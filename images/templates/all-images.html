@@ -2,38 +2,32 @@
 {% block content %}
 {{block.super}}
 
-<div class="container">
 
 {% for images_item in images %}
 
  <!--Display the images  -->
- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable">
- <div class="col-md-6">
-    <img src="{{images_item.gallery_image.url}}" class="img-responsive" alt="Image">
+ <div class="col-md-4">
+    <img class="img-responsive" src="{{images_item.gallery_image.url}}" data-target="#exampleModalScrollable" 
+    data-toggle="modal"  alt="Image">
   </div>
-</button>
   {% endfor %}
-</div>
 
-<!-- Button trigger modal -->
-
-  
 
 
 {% for images_item in images %}
 <!-- Modal -->
 <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content ">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalScrollableTitle">{{image.name}}</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Name: {{image.name}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <img src="{{images_item.gallery_image.url}}" class="img-responsive" alt="Image" size="100px200">
-      </div>
+      
 
       <p>Description: {{image.description}}</p>
         <p>Location: {{image.location}}</p>
@@ -41,9 +35,31 @@
         {% for category in image.categories.all %}
         <p> Category: {{ category.name }} </p>
         {% endfor %}
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+      <div class="modal-footer"></div>
         
+        <button type="button" name="button" class="btn btn-info" value="{{images_item.gallery_image.url}}" onclick="copylink(this.value)">Copy Image Link</button>
+      </div>
+      <div class="modal-footer">
+       
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function copylink(value) {
+    console.log('hi yellow')
+    function handler(event){
+        event.clipboardData.setData('text/plain', value);
+        event.preventDefault();
+        document.removeEventListener('copy', handler, true);
+    }
+    document.addEventListener('copy', handler, true);
+    document.execCommand('copy');
+}
+</script>  
       </div>
     </div>
   </div>
