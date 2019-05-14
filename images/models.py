@@ -24,16 +24,16 @@ class Image(models.Model):
         ordering = ['name']
 
     @classmethod
-    def search_by_category(cls,search_images):
-        images = Image.objects.filter(categories__name__icontains=search_images)
+    def search_by_category(cls,search_term):
+        images = cls.objects.filter(image_category__category=search_term)
         return images  
 
     @classmethod
-    def view_location(cls,name):
+    def filter_by_location(cls,location):
         location = cls.objects.filter(location=name)
         return location
 
     @classmethod
-    def view_category(cls,cat):
+    def filter_by_category(cls,cat):
         categories = cls.objects.filter(categories=cat)
         return categories  

@@ -10,10 +10,10 @@ class LocationAdmin(admin. ModelAdmin):
     list_display = ['name']
     ordering = ['name']
 
-class CategoriesAdmin(admin. ModelAdmin):
+class categoriesAdmin(admin. ModelAdmin):
     list_display = ['name']
     ordering = ['name']    
 
 admin.site.register(Image, ImageAdmin)
 admin.site.register(Location, LocationAdmin)
-admin.site.register(categories, CategoriesAdmin)
+admin.site.register(categories, categoriesAdmin)
