@@ -6,7 +6,7 @@ This is an application that allows users to view images. Images are classified i
 ### Description
 The application allows users to view images according to their categories and location. The admin is the one responsible for uploading, editing and deleting images. The users can search for images according to their categories.
 
-### BDD Specifications
+### BDD Specifications Table
 |        User Requirements                 |           Input                           |           Output                         |
 |------------------------------------------|-------------------------------------------|------------------------------------------|
 | View all images                          |  Go to the home page                      |    All images will be displayed          |
