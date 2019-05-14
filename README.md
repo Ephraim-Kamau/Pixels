@@ -18,8 +18,9 @@ The application allows users to view images according to their categories and lo
 <ul>
 <li>Ensure you have Python3.6 installed</li>
 <li>Clone the Pixels directory</li>
-<li>Create your own virtual environment, activate it install all the necessary modules necessarry for running the application</li>
-<li>Install all the necessary dependencies necessarry for running the application `pip install-r requirements.txt`</li>
+<li>Create your own virtual environment and activate it using these respective commands:<!-- python3.6 -m venv --without-pip virtual && source virtual/bin/activate --></li>
+<li>Install all the necessary dependencies necessarry for running the application using this command: pip install-r requirements.txt</li>
+</li>Create a database: psql then: CREATE DATABASE gallery
 <li>Run python3.6 manage.py runserver on the terminal.You can then open the app on your browser</li>
 </ul>
 
