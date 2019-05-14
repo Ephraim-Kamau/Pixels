@@ -32,7 +32,7 @@ def search_results(request):
         return render(request, 'search.html',{"message":message,"images": searched_images})
 
     else:
-        message = "You haven't searched for any term"
+        message = ""
         return render(request, 'search.html',{"message":message})    
 
 def get_image_by_id(request,image_id):

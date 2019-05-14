@@ -3,23 +3,54 @@
 <div class="container">
 
   <div class="row">
-    {% if articles%}
+    {% if images in images %}
       <h2 class='text-center'>Found {{ images|length }} of searched term {{message}}</h2>
     {% else %}
-      <h2 class='text-center'> Found no images</h2>
+      <h2 class='text-center'> Found 0 images for the term {{message}}</h2>
     {% endif %}
 
   </div>
 
-  <div class="row">
+  {% for images_item in images %}
 
-  {% if articles %}
-    {% for image in images %}
-      <div class="col-sm-6 col-md-3">
-          <h1>{{image.name}}</h1>
+ <!--Display the images  -->
+ <div clas="container">
+ <div class="col-md-6"><br>
+    <img class="img-responsive" src="{{images_item.gallery_image.url}}" data-target="#myModal{{images_item.id}}" 
+    data-toggle="modal"  alt="Image">
+  </div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal{{images_item.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle" style="font-size:30px; text-align: center; font-family:'Times New Roman', Times, serif;">Name: {{images_item.name}}</h5>
+       
+        </button>
       </div>
-    {% endfor %}
-  {% endif %}
+      <div class="modal-body">
+        <img src="{{images_item.gallery_image.url}}" class="img-responsive"  alt="Image">
+      </div>
+      
+        
+      <div class="modal-body" style="font-size:30px; text-align: center; font-family:'Times New Roman', Times, serif;">Description: {{images_item.description}}</div><hr>
+      <div class="modal-body" style="font-size:30px; text-align: center; font-family:'Times New Roman', Times, serif;">Location: {{images_item.location}}</div>
+      <div class="modal-footer">
+        
+        <button type="button" name="button" class="btn btn-success btn-block" value="{{images_item.gallery_image.url}}" onclick="copylink(this.value)">Copy Image Link</button>
+      </div>
+      <div class="modal-footer">
+       
+        <button type="button" class="btn btn-info btn-block" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
   </div>
 </div>
-{% endblock %}
+</div>
+ 
+    
+
+{% endfor %}
+{%endblock %}
